@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+
+    app:
+        build: .
+        container_name: wsb-app
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+            -   type: bind
+                source: ./php.ini
+                target: /usr/local/etc/php/php.ini
+        networks:
+            - wsb-network
+
+networks:
+    wsb-network:
+        driver: bridge
